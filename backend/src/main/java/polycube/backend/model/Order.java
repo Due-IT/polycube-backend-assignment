@@ -30,15 +30,18 @@ public class Order {
     }
 
     private int calculateDiscount(Member member, int price) {
-        return switch (member.getGrade()) {
+        int discountAmount = switch (member.getGrade()) {
             case VIP -> 1000;
             case VVIP -> {
                 int discountRateAmount = (int) (price * 0.1);
-                // 10% 할인액이 1,000원보다 작으면 1,000원을 선택 (최소 할인 보장)
+                // 할인액이 1000원 미만이면 1000원 할인
                 yield Math.max(discountRateAmount, 1000);
             }
             case NORMAL -> 0;
         };
+
+        // 할인액이 상품 원가보다 크면 원가만큼만 할인
+        return Math.min(discountAmount, price);
     }
 
     public int calculateFinalPrice() {
