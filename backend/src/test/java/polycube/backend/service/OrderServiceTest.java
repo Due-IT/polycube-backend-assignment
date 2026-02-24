@@ -4,6 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import polycube.backend.model.Grade;
+import polycube.backend.model.Member;
+import polycube.backend.model.Order;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class OrderServiceTest {
 
