@@ -3,9 +3,9 @@ package polycube.backend.service;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import polycube.backend.model.Grade;
-import polycube.backend.model.Member;
-import polycube.backend.model.Order;
+import polycube.backend.model.type.Grade;
+import polycube.backend.model.entity.Member;
+import polycube.backend.model.entity.Order;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

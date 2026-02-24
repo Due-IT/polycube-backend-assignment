@@ -3,7 +3,7 @@ package polycube.backend.payload;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import polycube.backend.model.PaymentMethod;
+import polycube.backend.model.type.PaymentMethod;
 
 public record OrderRequest(
         @NotNull(message = "회원 식별자는 필수입니다.")

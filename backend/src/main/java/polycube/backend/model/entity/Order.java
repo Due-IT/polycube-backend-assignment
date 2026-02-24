@@ -1,9 +1,10 @@
-package polycube.backend.model;
+package polycube.backend.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import polycube.backend.model.type.PaymentMethod;
 
 @Entity
 @Table(name = "orders")

@@ -1,6 +1,6 @@
 package polycube.backend.payload;
 
-import polycube.backend.model.PaymentMethod;
+import polycube.backend.model.type.PaymentMethod;
 
 import java.time.LocalDateTime;
 
