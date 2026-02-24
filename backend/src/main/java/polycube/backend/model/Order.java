@@ -1,10 +1,23 @@
 package polycube.backend.model;
 
+import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "orders")
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY) // 실무 필수: 지연 로딩
+    @JoinColumn(name = "member_id")
     private Member member;
+
     private String itemName;
     private int originalPrice;
     private int discountPrice;
@@ -30,5 +43,10 @@ public class Order {
 
     public int calculateFinalPrice() {
         return originalPrice - discountPrice;
+    }
+
+    public Payment pay(PaymentMethod method) {
+        int finalAmount = calculateFinalPrice();
+        return new Payment(this, finalAmount, method);
     }
 }
