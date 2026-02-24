@@ -26,12 +26,16 @@ public class Payment {
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
+    @Enumerated(EnumType.STRING)
+    private Grade paidGrade;
+
     private LocalDateTime paidAt;
 
-    protected Payment(Order order, int finalAmount, PaymentMethod paymentMethod) {
+    protected Payment(Order order, int finalAmount, PaymentMethod paymentMethod, Grade paidGrade) {
         this.order = order;
         this.finalAmount = finalAmount;
         this.paymentMethod = paymentMethod;
+        this.paidGrade = paidGrade;
         this.paidAt = LocalDateTime.now();
     }
 

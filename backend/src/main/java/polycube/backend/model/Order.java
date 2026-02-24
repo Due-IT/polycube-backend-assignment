@@ -50,6 +50,6 @@ public class Order {
 
     public Payment pay(PaymentMethod method) {
         int finalAmount = calculateFinalPrice();
-        return new Payment(this, finalAmount, method);
+        return new Payment(this, finalAmount, method, member.getGrade());
     }
 }
