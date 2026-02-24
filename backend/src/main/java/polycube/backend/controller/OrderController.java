@@ -1,5 +1,6 @@
 package polycube.backend.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<OrderResponse> order(@RequestBody OrderRequest request) {
+    public ResponseEntity<OrderResponse> order(@Valid @RequestBody OrderRequest request) {
         Payment result = orderService.createOrder(request);
 
         OrderResponse response = new OrderResponse(
