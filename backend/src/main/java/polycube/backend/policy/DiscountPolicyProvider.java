@@ -18,7 +18,7 @@ public class DiscountPolicyProvider {
 
         List<DiscountPolicy> matchedPolicies = policies.stream()
                 .filter(policy -> policy.isSupport(discountContext))
-                .sorted(Comparator.comparingInt(DiscountPolicy::getPriority)) // 낮은 숫자 우선
+                .sorted(Comparator.comparingInt(DiscountPolicy::getPriority))
                 .toList();
 
         if (matchedPolicies.isEmpty()) {
