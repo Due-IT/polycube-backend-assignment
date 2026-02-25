@@ -14,7 +14,6 @@ public class NormalDiscountPolicyTest {
     @DisplayName("NORMAL 등급은 0원이 할인된다")
     void normal_grade_no_discount() {
         // given
-        Grade grade = Grade.NORMAL;
         int price = 10000;
 
         // when

@@ -19,6 +19,6 @@ public class PointDiscountPolicy implements DiscountPolicy {
 
     @Override
     public int getPriority() {
-        return 2;
+        return DISCOUNT_PRIORITY;
     }
 }

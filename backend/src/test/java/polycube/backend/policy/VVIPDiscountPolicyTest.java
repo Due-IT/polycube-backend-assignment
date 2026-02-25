@@ -14,7 +14,6 @@ public class VVIPDiscountPolicyTest {
     @DisplayName("VVIP 등급은 10% 할인이 적용되어야 한다")
     void vvip_rate_discount() {
         // given
-        Grade grade = Grade.VVIP;
         int price = 20000;
 
         // when
@@ -28,7 +27,6 @@ public class VVIPDiscountPolicyTest {
     @DisplayName("VVIP 할인 금액이 1000원 미만이면 최소 1000원을 할인해야 한다")
     void vvip_minimum_discount_limit() {
         // given
-        Grade grade = Grade.VVIP;
         int price = 5000;
 
         // when
@@ -42,7 +40,6 @@ public class VVIPDiscountPolicyTest {
     @DisplayName("원가가 1000원 미만이면 원가만큼만 할인되어야 한다 (0원 결제)")
     void vvip_low_price_limit_discount() {
         // given
-        Grade grade = Grade.VVIP;
         int price = 800;
 
         // when

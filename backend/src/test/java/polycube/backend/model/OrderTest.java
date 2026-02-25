@@ -24,7 +24,6 @@ public class OrderTest {
         // given
         Member member = new Member(1L, "VIP회원", Grade.VIP);
         Order order = OrderFixture.createOrder(member, 10000);
-        VIPDiscountPolicy vipPolicy = new VIPDiscountPolicy();
 
         // when
         order.applyDiscounts(List.of(new VIPDiscountPolicy()));
