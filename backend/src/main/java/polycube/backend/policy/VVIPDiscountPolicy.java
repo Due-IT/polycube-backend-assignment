@@ -16,8 +16,8 @@ public class VVIPDiscountPolicy implements DiscountPolicy {
 
     @Override
     public int calculateDiscount(Grade grade, int price) {
-        int discountAmount = (int) (price * DISCOUNT_RATE);
-        discountAmount = Math.max(discountAmount, MINIMUM_DISCOUNT);
-        return Math.min(discountAmount, price);
+        int discountPrice = (int) (price * DISCOUNT_RATE);
+        discountPrice = Math.max(discountPrice, MINIMUM_DISCOUNT);
+        return Math.min(discountPrice, price);
     }
 }
