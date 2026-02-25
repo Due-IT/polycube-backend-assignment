@@ -23,4 +23,32 @@ public class VVIPDiscountPolicyTest {
         // then
         assertThat(discount).isEqualTo(2000);
     }
+
+    @Test
+    @DisplayName("VVIP 할인 금액이 1000원 미만이면 최소 1000원을 할인해야 한다")
+    void vvip_minimum_discount_limit() {
+        // given
+        Grade grade = Grade.VVIP;
+        int price = 5000;
+
+        // when
+        int discount = policy.calculateDiscount(grade, price);
+
+        // then
+        assertThat(discount).isEqualTo(1000);
+    }
+
+    @Test
+    @DisplayName("원가가 1000원 미만이면 원가만큼만 할인되어야 한다 (0원 결제)")
+    void vvip_low_price_limit_discount() {
+        // given
+        Grade grade = Grade.VVIP;
+        int price = 800;
+
+        // when
+        int discount = policy.calculateDiscount(grade, price);
+
+        // then
+        assertThat(discount).isEqualTo(800);
+    }
 }
