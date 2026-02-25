@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import polycube.backend.model.type.PaymentMethod;
+import polycube.backend.policy.DiscountPolicy;
 
 @Entity
 @Table(name = "orders")
@@ -27,26 +28,14 @@ public class Order {
         this.member = member;
         this.itemName = itemName;
         this.originalPrice = originalPrice;
-        this.discountPrice = calculateDiscount(member, originalPrice);
-    }
-
-    private int calculateDiscount(Member member, int price) {
-        int discountAmount = switch (member.getGrade()) {
-            case VIP -> 1000;
-            case VVIP -> {
-                int discountRateAmount = (int) (price * 0.1);
-                // 할인액이 1000원 미만이면 1000원 할인
-                yield Math.max(discountRateAmount, 1000);
-            }
-            case NORMAL -> 0;
-        };
-
-        // 할인액이 상품 원가보다 크면 원가만큼만 할인
-        return Math.min(discountAmount, price);
     }
 
     public int calculateFinalPrice() {
         return originalPrice - discountPrice;
+    }
+
+    public void applyDiscount(DiscountPolicy policy) {
+        this.discountPrice = policy.calculateDiscount(member.getGrade(), originalPrice);
     }
 
     public Payment pay(PaymentMethod method) {
