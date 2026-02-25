@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import polycube.backend.model.type.Grade;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class VIPDiscountPolicyTest {
 
     private final VIPDiscountPolicy policy = new VIPDiscountPolicy();
