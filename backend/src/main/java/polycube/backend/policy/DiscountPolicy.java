@@ -1,9 +1,11 @@
 package polycube.backend.policy;
 
-import polycube.backend.model.type.Grade;
-
 public interface DiscountPolicy {
-    boolean isSupport(Grade grade);
+    boolean isSupport(DiscountContext context);
 
-    int calculateDiscount(Grade grade, int price);
+    int calculateDiscount(int price);
+
+    default int getPriority() {
+        return 1;
+    }
 }

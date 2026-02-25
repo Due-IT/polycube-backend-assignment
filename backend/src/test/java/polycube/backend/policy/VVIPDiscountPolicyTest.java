@@ -18,7 +18,7 @@ public class VVIPDiscountPolicyTest {
         int price = 20000;
 
         // when
-        int discount = policy.calculateDiscount(grade, price);
+        int discount = policy.calculateDiscount(price);
 
         // then
         assertThat(discount).isEqualTo(2000);
@@ -32,7 +32,7 @@ public class VVIPDiscountPolicyTest {
         int price = 5000;
 
         // when
-        int discount = policy.calculateDiscount(grade, price);
+        int discount = policy.calculateDiscount(price);
 
         // then
         assertThat(discount).isEqualTo(1000);
@@ -46,7 +46,7 @@ public class VVIPDiscountPolicyTest {
         int price = 800;
 
         // when
-        int discount = policy.calculateDiscount(grade, price);
+        int discount = policy.calculateDiscount(price);
 
         // then
         assertThat(discount).isEqualTo(800);

@@ -2,12 +2,14 @@ package polycube.backend.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import polycube.backend.fixture.OrderFixture;
 import polycube.backend.model.entity.Member;
 import polycube.backend.model.entity.Order;
 import polycube.backend.model.entity.Payment;
 import polycube.backend.model.type.Grade;
 import polycube.backend.model.type.PaymentMethod;
 import polycube.backend.policy.DiscountPolicy;
+import polycube.backend.policy.PointDiscountPolicy;
 import polycube.backend.policy.VIPDiscountPolicy;
 
 import java.util.List;
@@ -21,11 +23,11 @@ public class OrderTest {
     void apply_discount_test() {
         // given
         Member member = new Member(1L, "VIP회원", Grade.VIP);
-        Order order = new Order(member, "아이템A", 10000);
+        Order order = OrderFixture.createOrder(member, 10000);
         VIPDiscountPolicy vipPolicy = new VIPDiscountPolicy();
 
         // when
-        order.applyDiscount(vipPolicy);
+        order.applyDiscounts(List.of(new VIPDiscountPolicy()));
 
         // then
         assertThat(order.getDiscountPrice()).isEqualTo(1000);
@@ -36,8 +38,8 @@ public class OrderTest {
     void create_payment_test() {
         // given
         Member member = new Member(1L, "VIP회원", Grade.VIP);
-        Order order = new Order(member, "아이템A", 10000);
-        order.applyDiscount(new VIPDiscountPolicy());
+        Order order = OrderFixture.createOrder(member, 10000);
+        order.applyDiscounts(List.of(new VIPDiscountPolicy()));
 
         // when
         Payment payment = order.pay(PaymentMethod.CREDIT_CARD);
@@ -52,11 +54,11 @@ public class OrderTest {
     void double_discount_priority_test() {
         // given
         Member member = new Member(1L, "VIP 회원", Grade.VVIP);
-        Order order = new Order(member, "아이템A", 10000);
+        Order order = OrderFixture.createOrder(member, 10000, PaymentMethod.POINT);
 
         List<DiscountPolicy> policies = List.of(
-                new PointDiscountPolicy(PaymentMethod.POINT),   // Priority: 2
-                new VIPDiscountPolicy()     // Priority: 1
+                new VIPDiscountPolicy(),     // Priority: 1
+                new PointDiscountPolicy()   // Priority: 2
         );
 
         // when

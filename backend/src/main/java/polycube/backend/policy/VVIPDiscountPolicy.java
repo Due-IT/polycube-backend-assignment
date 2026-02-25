@@ -10,12 +10,12 @@ public class VVIPDiscountPolicy implements DiscountPolicy {
     private static final int MINIMUM_DISCOUNT = 1000;
 
     @Override
-    public boolean isSupport(Grade grade) {
-        return grade == Grade.VVIP;
+    public boolean isSupport(DiscountContext context) {
+        return context.grade() == Grade.VVIP;
     }
 
     @Override
-    public int calculateDiscount(Grade grade, int price) {
+    public int calculateDiscount(int price) {
         int discountPrice = (int) (price * DISCOUNT_RATE);
         discountPrice = Math.max(discountPrice, MINIMUM_DISCOUNT);
         return Math.min(discountPrice, price);

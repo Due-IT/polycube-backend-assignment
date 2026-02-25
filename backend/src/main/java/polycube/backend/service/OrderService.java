@@ -12,6 +12,8 @@ import polycube.backend.policy.DiscountPolicyProvider;
 import polycube.backend.repository.MemberRepository;
 import polycube.backend.repository.PaymentRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -25,10 +27,10 @@ public class OrderService {
         Member member = memberRepository.findById(request.memberId())
                 .orElseThrow(() -> new IllegalArgumentException("회원을 찾을 수 없습니다."));
 
-        Order order = new Order(member, request.itemName(), request.price());
+        Order order = new Order(member, request);
 
-        DiscountPolicy policy = discountPolicyProvider.getPolicy(member.getGrade());
-        order.applyDiscount(policy);
+        List<DiscountPolicy> policies = discountPolicyProvider.getPolicies(order);
+        order.applyDiscounts(policies);
 
         Payment payment = order.pay(request.paymentMethod());
 

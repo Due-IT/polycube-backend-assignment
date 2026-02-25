@@ -7,12 +7,12 @@ import polycube.backend.model.type.Grade;
 public class NormalDiscountPolicy implements DiscountPolicy {
 
     @Override
-    public boolean isSupport(Grade grade) {
-        return grade == Grade.NORMAL;
+    public boolean isSupport(DiscountContext context) {
+        return context.grade() == Grade.NORMAL;
     }
 
     @Override
-    public int calculateDiscount(Grade grade, int price) {
+    public int calculateDiscount(int price) {
         return 0;
     }
 }

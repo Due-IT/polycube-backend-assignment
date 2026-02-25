@@ -18,7 +18,7 @@ public class NormalDiscountPolicyTest {
         int price = 10000;
 
         // when
-        int discount = policy.calculateDiscount(grade, price);
+        int discount = policy.calculateDiscount(price);
 
         // then
         assertThat(discount).isEqualTo(0);
