@@ -4,18 +4,22 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import polycube.backend.model.type.Grade;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DiscountPolicyProviderTest {
     private final DiscountPolicyProvider provider = new DiscountPolicyProvider(
-            new VIPDiscountPolicy(),
-            new VVIPDiscountPolicy(),
-            new NormalDiscountPolicy()
+            List.of(
+                    new VIPDiscountPolicy(),
+                    new VVIPDiscountPolicy(),
+                    new NormalDiscountPolicy()
+            )
     );
 
     @Test
     @DisplayName("NORMAL 등급을 넣으면 NormalDiscountPolicy 객체를 반환해야 한다")
-    void get_vip_policy() {
+    void get_normal_policy() {
         Grade grade = Grade.NORMAL;
         DiscountPolicy policy = provider.getPolicy(grade);
         assertThat(policy).isExactlyInstanceOf(NormalDiscountPolicy.class);
