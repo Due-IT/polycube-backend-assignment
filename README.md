@@ -151,7 +151,7 @@ TO-BE (OCP 실현): 새로운 정책 클래스를 '추가'하기만 하면, 기�
 
 ### 3. Wrapper 객체(AppliedDiscountPolicy)의 도입
 
-위의 모든 제약 사항을 해결하기 위해, 행위(Policy)와 상태(Setting)를 결합한 **`AppliedDiscountPolicy`**라는 래퍼 객체를 도입했습니다.
+위의 모든 제약 사항을 해결하기 위해, 행위(Policy)와 상태(Setting)를 결합한 `AppliedDiscountPolicy`라는 래퍼 객체를 도입했습니다.
 
 - **역할의 분리**: `DiscountPolicy`는 "할인 대상인가?"라는 로직만 담당하고, `DiscountSetting`은 DB에서 관리되는 상태(State)만 담당합니다.
 - **동적 결합**: `DiscountPolicyProvider`가 런타임에 이 둘을 조회하여 `AppliedDiscountPolicy`로 묶어줍니다.
