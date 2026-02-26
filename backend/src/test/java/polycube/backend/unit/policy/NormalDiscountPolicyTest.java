@@ -1,8 +1,8 @@
-package polycube.backend.policy;
+package polycube.backend.unit.policy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import polycube.backend.model.type.Grade;
+import polycube.backend.policy.NormalDiscountPolicy;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
