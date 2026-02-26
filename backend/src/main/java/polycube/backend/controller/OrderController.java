@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import polycube.backend.model.entity.Payment;
+import polycube.backend.model.entity.Order;
 import polycube.backend.payload.OrderRequest;
 import polycube.backend.payload.OrderResponse;
 import polycube.backend.service.OrderService;
@@ -22,12 +22,12 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<OrderResponse> order(@Valid @RequestBody OrderRequest request) {
-        Payment result = orderService.createOrder(request);
+        Order result = orderService.createOrder(request);
 
         OrderResponse response = new OrderResponse(
                 "SUCCESS",
                 "주문이 성공적으로 완료되었습니다.",
-                result.getFinalAmount(),
+                result.getFinalPrice(),
                 result.getPaymentMethod(),
                 result.getPaidAt()
         );

@@ -2,7 +2,9 @@ package polycube.backend.unit.policy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import polycube.backend.policy.VIPDiscountPolicy;
+import polycube.backend.discount.policy.VIPDiscountPolicy;
+import polycube.backend.discount.setting.DiscountSetting;
+import polycube.backend.fixture.DiscountSettingFixture;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,9 +17,10 @@ public class VIPDiscountPolicyTest {
     void vip_fix_discount() {
         // given
         int price = 10000;
+        DiscountSetting setting = DiscountSettingFixture.createVIPDiscountSetting();
 
         // when
-        int discount = policy.calculateDiscount(price);
+        int discount = policy.calculateDiscount(price, setting);
 
         // then
         assertThat(discount).isEqualTo(1000);
@@ -28,9 +31,10 @@ public class VIPDiscountPolicyTest {
     void low_price_limit_discount() {
         // given
         int price = 500;
+        DiscountSetting setting = DiscountSettingFixture.createVIPDiscountSetting();
 
         // when
-        int discount = policy.calculateDiscount(price);
+        int discount = policy.calculateDiscount(price, setting);
 
         // then
         assertThat(discount).isEqualTo(500);

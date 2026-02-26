@@ -1,4 +1,4 @@
-package polycube.backend.policy;
+package polycube.backend.discount;
 
 import polycube.backend.model.type.Grade;
 import polycube.backend.model.type.PaymentMethod;
